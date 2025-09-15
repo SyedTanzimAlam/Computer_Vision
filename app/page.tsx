@@ -16,7 +16,8 @@ interface FormFields {
 
 interface StatusMessage {
   tone: "error" | "success";
-  text: string;
+  title: string;
+  description?: string;
 }
 
 export default function Home() {
@@ -100,35 +101,35 @@ function CreateAccountForm() {
     const confirmPassword = fields.confirmPassword;
 
     if (!email) {
-      setStatus({ tone: "error", text: "Please enter your email address." });
+      setStatus({ tone: "error", title: "Please enter your email address." });
       return;
     }
 
     if (!EMAIL_PATTERN.test(email)) {
-      setStatus({ tone: "error", text: "Please provide a valid email." });
+      setStatus({ tone: "error", title: "Please provide a valid email." });
       return;
     }
 
     if (!password) {
-      setStatus({ tone: "error", text: "Please create a password." });
+      setStatus({ tone: "error", title: "Please create a password." });
       return;
     }
 
     if (password.length < MIN_PASSWORD_LENGTH) {
       setStatus({
         tone: "error",
-        text: `Password must be at least ${MIN_PASSWORD_LENGTH} characters long.`,
+        title: `Password must be at least ${MIN_PASSWORD_LENGTH} characters long.`,
       });
       return;
     }
 
     if (!confirmPassword) {
-      setStatus({ tone: "error", text: "Please confirm your password." });
+      setStatus({ tone: "error", title: "Please confirm your password." });
       return;
     }
 
     if (password !== confirmPassword) {
-      setStatus({ tone: "error", text: "Passwords do not match." });
+      setStatus({ tone: "error", title: "Passwords do not match." });
       return;
     }
 
@@ -139,13 +140,14 @@ function CreateAccountForm() {
       setFields({ email, password: "", confirmPassword: "" });
       setStatus({
         tone: "success",
-        text: "Account created! Check your inbox to confirm access.",
+        title: "Account created successfully",
+        description: "Check your inbox to confirm access.",
       });
     }, 1200);
   };
 
   const handleSocialClick = (provider: string) => {
-    setStatus({ tone: "success", text: `${provider} sign-in is coming soon.` });
+    setStatus({ tone: "success", title: `${provider} sign-in is coming soon.` });
   };
 
   return (
@@ -199,19 +201,7 @@ function CreateAccountForm() {
         />
       </div>
 
-      {status ? (
-        <p
-          role="status"
-          aria-live="polite"
-          className={`rounded-lg border px-4 py-3 text-sm ${
-            status.tone === "error"
-              ? "border-rose-200 bg-rose-50 text-rose-600"
-              : "border-emerald-200 bg-emerald-50 text-emerald-600"
-          }`}
-        >
-          {status.text}
-        </p>
-      ) : null}
+      {status ? <StatusAlert status={status} /> : null}
 
       <button
         type="submit"
@@ -229,11 +219,17 @@ function CreateAccountForm() {
         </span>
       </div>
 
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-4 gap-3">
         <SocialButton
-          icon={GithubIcon}
-          label="GitHub"
-          onClick={() => handleSocialClick("GitHub")}
+          icon={GoogleIcon}
+          label="Google"
+          onClick={() => handleSocialClick("Google")}
+          disabled={isSubmitting}
+        />
+        <SocialButton
+          icon={XIcon}
+          label="X (Twitter)"
+          onClick={() => handleSocialClick("X (Twitter)")}
           disabled={isSubmitting}
         />
         <SocialButton
@@ -242,8 +238,72 @@ function CreateAccountForm() {
           onClick={() => handleSocialClick("Facebook")}
           disabled={isSubmitting}
         />
+        <SocialButton
+          icon={GithubIcon}
+          label="GitHub"
+          onClick={() => handleSocialClick("GitHub")}
+          disabled={isSubmitting}
+        />
       </div>
     </form>
+  );
+}
+
+function StatusAlert({ status }: { status: StatusMessage }) {
+  const isSuccess = status.tone === "success";
+  const containerClasses = isSuccess
+    ? "border border-emerald-200 bg-emerald-50 text-emerald-700"
+    : "border border-rose-200 bg-white text-rose-600";
+  const iconWrapperClasses = isSuccess
+    ? "bg-emerald-100 text-emerald-600"
+    : "bg-rose-50 text-rose-500";
+  const titleClasses = isSuccess ? "text-emerald-900" : "text-rose-700";
+  const descriptionClasses = isSuccess ? "text-emerald-700" : "text-rose-600";
+  const icon = isSuccess ? (
+    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className="h-4 w-4">
+      <path
+        d="m6.75 10.25 2.25 2.25 4.25-4.5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  ) : (
+    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className="h-4 w-4">
+      <path
+        d="M10 4 2.75 16h14.5L10 4Z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M10 8.25v3.5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <path d="M10 14.25h.008" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+
+  return (
+    <div
+      role="status"
+      aria-live="polite"
+      className={`flex items-start gap-3 rounded-xl px-4 py-3 text-sm ${containerClasses}`}
+    >
+      <span
+        className={`flex h-6 w-6 flex-none items-center justify-center rounded-full ${iconWrapperClasses}`}
+        aria-hidden="true"
+      >
+        {icon}
+      </span>
+      <div className={status.description ? "space-y-1" : ""}>
+        <p className={`font-semibold ${titleClasses}`}>{status.title}</p>
+        {status.description ? <p className={descriptionClasses}>{status.description}</p> : null}
+      </div>
+    </div>
   );
 }
 
@@ -259,11 +319,11 @@ function SocialButton({ icon: Icon, label, onClick, disabled }: SocialButtonProp
     <button
       type="button"
       onClick={onClick}
-      className="flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-600 transition hover:border-slate-300 hover:text-slate-700 disabled:cursor-not-allowed disabled:opacity-60"
+      className="flex aspect-square items-center justify-center rounded-xl border border-slate-200 bg-white p-2.5 text-slate-900 transition hover:border-slate-300 disabled:cursor-not-allowed disabled:opacity-60"
       disabled={disabled}
     >
-      <Icon className="h-4 w-4" />
-      {label}
+      <Icon className="h-5 w-5" aria-hidden="true" />
+      <span className="sr-only">{label}</span>
     </button>
   );
 }
@@ -279,12 +339,35 @@ function Spinner({ className = "", ...rest }: HTMLAttributes<HTMLSpanElement>) {
   return <span aria-hidden="true" {...rest} className={classes} />;
 }
 
-function GithubIcon(props: SVGProps<SVGSVGElement>) {
+function GoogleIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false" {...props}>
+      <path
+        fill="#4285F4"
+        d="M23.49 12.27c0-.79-.07-1.54-.21-2.27H12v4.59h6.48a5.52 5.52 0 0 1-2.41 3.64v3.02h3.89c2.27-2.09 3.53-5.17 3.53-9.25Z"
+      />
+      <path
+        fill="#34A853"
+        d="M12 24c3.24 0 5.97-1.07 7.96-2.93l-3.89-3.02c-1.08.72-2.47 1.14-4.07 1.14-3.13 0-5.78-2.11-6.72-4.96H1.26v3.12A12 12 0 0 0 12 24Z"
+      />
+      <path
+        fill="#FBBC05"
+        d="M5.28 14.23a7.18 7.18 0 0 1 0-4.46V6.65H1.26a12 12 0 0 0 0 10.7l4.02-3.12Z"
+      />
+      <path
+        fill="#EA4335"
+        d="M12 4.77c1.76 0 3.34.61 4.58 1.81l3.43-3.43C17.96 1.19 15.24 0 12 0 7.32 0 3.26 2.69 1.26 6.65l4.02 3.12C6.22 7.08 8.87 4.77 12 4.77Z"
+      />
+    </svg>
+  );
+}
+
+function XIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false" {...props}>
       <path
         fill="currentColor"
-        d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2c-3.34.73-4-1.61-4-1.61a3.16 3.16 0 0 0-1.34-1.76c-1.1-.74.08-.72.08-.72a2.49 2.49 0 0 1 1.82 1.23 2.52 2.52 0 0 0 3.44 1 2.52 2.52 0 0 1 .76-1.59c-2.67-.31-5.47-1.34-5.47-5.93A4.63 4.63 0 0 1 5.14 8a4.3 4.3 0 0 1 .12-3.18s1-.32 3.3 1.23a11.39 11.39 0 0 1 6 0C16.9 4.52 17.9 4.86 17.9 4.86A4.28 4.28 0 0 1 18 8a4.61 4.61 0 0 1 1.23 3.21c0 4.6-2.81 5.61-5.49 5.91a2.83 2.83 0 0 1 .81 2.2v3.26c0 .33.22.71.82.58A12 12 0 0 0 12 .5"
+        d="M19.5 0h4.5L14.25 11.137 24 24h-7.5l-5.205-7.508L5.452 24H0L10.125 12.443 0 0h7.5l4.657 6.717L19.5 0Z"
       />
     </svg>
   );
@@ -294,10 +377,20 @@ function FacebookIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false" {...props}>
       <path
-        fill="currentColor"
+        fill="#1877F2"
         d="M13.5 21.5v-7h2.4l.36-2.75h-2.76V9.25c0-.8.22-1.34 1.38-1.34h1.48V5.45A20 20 0 0 0 14.4 5c-2.1 0-3.55 1.27-3.55 3.6v2.01H8.5v2.75h2.35v7Z"
       />
     </svg>
+  );
+}
 
+function GithubIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false" {...props}>
+      <path
+        fill="currentColor"
+        d="M12 .297a12 12 0 0 0-3.793 23.4c.6.11.82-.26.82-.58v-2.06c-3.338.73-4.04-1.61-4.04-1.61-.546-1.38-1.333-1.75-1.333-1.75-1.089-.74.082-.724.082-.724 1.205.086 1.84 1.24 1.84 1.24 1.07 1.85 2.807 1.32 3.492 1.01.108-.79.418-1.32.762-1.62-2.665-.3-5.466-1.33-5.466-5.93 0-1.31.468-2.38 1.236-3.22-.124-.303-.536-1.52.117-3.17 0 0 1.008-.32 3.305 1.23a11.5 11.5 0 0 1 6.01 0c2.296-1.55 3.302-1.23 3.302-1.23.655 1.65.243 2.87.119 3.17.77.84 1.235 1.91 1.235 3.22 0 4.61-2.807 5.63-5.48 5.93.43.37.814 1.1.814 2.22v3.29c0 .32.218.7.825.58A12 12 0 0 0 12 .297Z"
+      />
+    </svg>
   );
 }
