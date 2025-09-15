@@ -2,7 +2,8 @@
 
 :root {
   --background: #020617;
-  --foreground: #f8fafc;
+
+  --foreground: #e2e8f0;
 }
 
 @theme inline {
@@ -15,7 +16,9 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #020617;
-    --foreground: #f8fafc;
+
+    --foreground: #e2e8f0;
+
   }
 }
 
@@ -37,6 +40,8 @@ body {
 }
 
 ::selection {
-  background: rgba(56, 189, 248, 0.3);
-  color: #f8fafc;
+
+  background: rgba(14, 165, 233, 0.35);
+  color: #020617;
+
 }

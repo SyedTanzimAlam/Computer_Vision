@@ -14,7 +14,8 @@ const geistMono = Geist_Mono({
 
 const title = "VisionForge Console | Sign in";
 const description =
-  "Sign in to VisionForge Console to orchestrate computer vision deployments, monitor pipelines, and manage governance.";
+
+  "Securely access the VisionForge Console to manage computer vision deployments and monitor edge performance.";
 
 export const metadata: Metadata = {
   title,
@@ -25,7 +26,9 @@ export const metadata: Metadata = {
     "computer vision",
     "edge ai",
     "mlops",
-    "sign in",
+
+    "login",
+
   ],
   openGraph: {
     title,
@@ -46,7 +49,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} bg-slate-950 text-slate-100 antialiased`}>
+
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+
         {children}
       </body>
     </html>
