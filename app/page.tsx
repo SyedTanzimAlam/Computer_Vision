@@ -16,7 +16,8 @@ interface FormFields {
 
 interface StatusMessage {
   tone: "error" | "success";
-  text: string;
+  title: string;
+  description?: string;
 }
 
 export default function Home() {
@@ -100,35 +101,35 @@ function CreateAccountForm() {
     const confirmPassword = fields.confirmPassword;
 
     if (!email) {
-      setStatus({ tone: "error", text: "Please enter your email address." });
+      setStatus({ tone: "error", title: "Please enter your email address." });
       return;
     }
 
     if (!EMAIL_PATTERN.test(email)) {
-      setStatus({ tone: "error", text: "Please provide a valid email." });
+      setStatus({ tone: "error", title: "Please provide a valid email." });
       return;
     }
 
     if (!password) {
-      setStatus({ tone: "error", text: "Please create a password." });
+      setStatus({ tone: "error", title: "Please create a password." });
       return;
     }
 
     if (password.length < MIN_PASSWORD_LENGTH) {
       setStatus({
         tone: "error",
-        text: `Password must be at least ${MIN_PASSWORD_LENGTH} characters long.`,
+        title: `Password must be at least ${MIN_PASSWORD_LENGTH} characters long.`,
       });
       return;
     }
 
     if (!confirmPassword) {
-      setStatus({ tone: "error", text: "Please confirm your password." });
+      setStatus({ tone: "error", title: "Please confirm your password." });
       return;
     }
 
     if (password !== confirmPassword) {
-      setStatus({ tone: "error", text: "Passwords do not match." });
+      setStatus({ tone: "error", title: "Passwords do not match." });
       return;
     }
 
@@ -139,13 +140,14 @@ function CreateAccountForm() {
       setFields({ email, password: "", confirmPassword: "" });
       setStatus({
         tone: "success",
-        text: "Account created! Check your inbox to confirm access.",
+        title: "Account created successfully",
+        description: "Check your inbox to confirm access.",
       });
     }, 1200);
   };
 
   const handleSocialClick = (provider: string) => {
-    setStatus({ tone: "success", text: `${provider} sign-in is coming soon.` });
+    setStatus({ tone: "success", title: `${provider} sign-in is coming soon.` });
   };
 
   return (
@@ -199,19 +201,7 @@ function CreateAccountForm() {
         />
       </div>
 
-      {status ? (
-        <p
-          role="status"
-          aria-live="polite"
-          className={`rounded-lg border px-4 py-3 text-sm ${
-            status.tone === "error"
-              ? "border-rose-200 bg-rose-50 text-rose-600"
-              : "border-emerald-200 bg-emerald-50 text-emerald-600"
-          }`}
-        >
-          {status.text}
-        </p>
-      ) : null}
+      {status ? <StatusAlert status={status} /> : null}
 
       <button
         type="submit"
@@ -256,6 +246,64 @@ function CreateAccountForm() {
         />
       </div>
     </form>
+  );
+}
+
+function StatusAlert({ status }: { status: StatusMessage }) {
+  const isSuccess = status.tone === "success";
+  const containerClasses = isSuccess
+    ? "border border-emerald-200 bg-emerald-50 text-emerald-700"
+    : "border border-rose-200 bg-white text-rose-600";
+  const iconWrapperClasses = isSuccess
+    ? "bg-emerald-100 text-emerald-600"
+    : "bg-rose-50 text-rose-500";
+  const titleClasses = isSuccess ? "text-emerald-900" : "text-rose-700";
+  const descriptionClasses = isSuccess ? "text-emerald-700" : "text-rose-600";
+  const icon = isSuccess ? (
+    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className="h-4 w-4">
+      <path
+        d="m6.75 10.25 2.25 2.25 4.25-4.5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  ) : (
+    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className="h-4 w-4">
+      <path
+        d="M10 4 2.75 16h14.5L10 4Z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M10 8.25v3.5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <path d="M10 14.25h.008" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+
+  return (
+    <div
+      role="status"
+      aria-live="polite"
+      className={`flex items-start gap-3 rounded-xl px-4 py-3 text-sm ${containerClasses}`}
+    >
+      <span
+        className={`flex h-6 w-6 flex-none items-center justify-center rounded-full ${iconWrapperClasses}`}
+        aria-hidden="true"
+      >
+        {icon}
+      </span>
+      <div className={status.description ? "space-y-1" : ""}>
+        <p className={`font-semibold ${titleClasses}`}>{status.title}</p>
+        {status.description ? <p className={descriptionClasses}>{status.description}</p> : null}
+      </div>
+    </div>
   );
 }
 
