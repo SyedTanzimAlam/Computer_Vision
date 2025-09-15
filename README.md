@@ -1,24 +1,24 @@
 # VisionForge Console
 
 
-A sign-in experience for the fictional VisionForge computer vision platform, inspired by the [Shadcn Admin login](https://github.com/satnaing/shadcn-admin). The page runs on [Next.js](https://nextjs.org/) with the App Router, styles come from [Tailwind CSS](https://tailwindcss.com/), and the project is powered by the [Bun](https://bun.sh/) runtime.
+A Next.js + Tailwind recreation of the Shadcn Admin create-account experience tailored for the fictional VisionForge computer vision platform. The project runs on the Bun runtime and mirrors the UI patterns from [satnaing/shadcn-admin](https://github.com/satnaing/shadcn-admin).
 
 ## Features
 
-- **Glassmorphism design:** Gradient halos, subtle shadows, and blurred card surfaces recreate the polished Shadcn Admin aesthetic.
-- **Interactive login form:** Client-side validation with friendly messaging, loading states, and mock social sign-in actions.
-- **Accessible defaults:** Semantic labels, focus rings, and keyboard-friendly buttons ready for further integration.
+- **Shadcn-inspired layout:** Centered brand header, rounded card, and clean typography matching the reference design.
+- **Client-side validation:** Email, password length, and confirmation checks with inline success or error feedback.
+- **Social sign-in placeholders:** GitHub and Facebook buttons with status messaging ready for integration.
 
 ## Tech stack
 
-- **Framework:** Next.js 15 with the App Router and Turbopack dev server
+- **Framework:** Next.js 15 with the App Router
 - **Runtime & package manager:** Bun 1.2+
-- **Styling:** Tailwind CSS v4 (utility classes and inline themes)
-- **TypeScript:** Strictode with modern JSX runtime
+- **Styling:** Tailwind CSS v4 utilities via `@import "tailwindcss"`
+- **TypeScript:** Strict configuration with the modern JSX runtime
 
 ## Getting started
 
-Install dependencies if you have not already:
+Install dependencies:
 
 
 ```bash
@@ -26,7 +26,7 @@ bun install
 ```
 
 
-Run the development server with Turbopack:
+Run the development server:
 
 
 ```bash
@@ -34,7 +34,7 @@ bun run dev
 ```
 
 
-Then open [http://localhost:3000](http://localhost:3000) in your browser. Edits to files inside `app/` automatically hot reload the page.
+Then open [http://localhost:3000](http://localhost:3000) in your browser. Edits to files inside `app/` hot reload automatically.
 
 
 ## Available scripts
@@ -51,9 +51,9 @@ bun run lint    # Run ESLint using the Next.js config
 ```
 app/
 
-  globals.css     # Tailwind CSS imports and design tokens
+  globals.css     # Tailwind CSS imports and global design tokens
   layout.tsx      # Root layout, metadata, and font setup
-  page.tsx        # Shadcn Admin–inspired login page with validation logic
+  page.tsx        # VisionForge create-account page with validation logic
   privacy/        # Static privacy policy route
 public/           # Static assets such as the favicon
 
@@ -67,4 +67,6 @@ Build the site before deploying to your hosting provider of choice:
 bun run build
 ```
 
-The generated output in `.next/` can be served with `bun run start` or exported to the platform you prefer (Vercel, Netlify, etc.).
+
+The generated output in `.next/` can be served with `bun run start` or deployed to platforms like Vercel or Netlify.
+
