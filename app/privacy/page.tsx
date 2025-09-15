@@ -18,7 +18,7 @@ export default function PrivacyPage() {
           Our commitment to responsible console and vision data governance
         </h1>
         <p className="max-w-2xl text-base text-slate-300">
-          VisionForge builds trustworthy computer vision solutions by aligning technology decisions with rigorous data governance and human-centered safeguards.
+          VisionForge builds trustworthy computer vision solutions by aligning technology decisions with rigorous data governance, security-by-design practices, and transparent communication at every step of the product lifecycle.
         </p>
       </div>
 
@@ -28,16 +28,38 @@ export default function PrivacyPage() {
           <p>
             We collect only the data required to deliver contracted services. Production imagery and console activity are encrypted in transit and at rest, with access limited to cleared personnel for debugging and continuous improvement.
           </p>
+          <ul className="list-inside list-disc space-y-2 text-slate-400">
+            <li>
+              <span className="text-slate-200">Console &amp; credential data:</span> usernames, email addresses, and audit events retained for security monitoring and contract fulfillment.
+            </li>
+            <li>
+              <span className="text-slate-200">Operational telemetry:</span> aggregated application diagnostics that help us improve stability without storing raw inputs longer than necessary.
+            </li>
+            <li>
+              <span className="text-slate-200">Visual datasets &amp; annotations:</span> imagery provided for model training is processed within customer-approved regions and stripped of unnecessary personal identifiers.
+            </li>
+          </ul>
           <p>
-            Anonymization features—such as face blurring and selective redaction—are enabled by default in every deployment. Data retained for model re-training is sampled to remove personally identifiable information unless explicitly authorized by clients.
+            Anonymization features—such as face blurring, selective redaction, and automatic retention timers—are enabled by default in every deployment. We never sell personal information, and data retained for model re-training is sampled to remove personally identifiable information unless explicitly authorized by clients.
           </p>
         </div>
 
         <div className="space-y-3" id="terms">
           <h2 className="text-xl font-semibold text-white">Security & compliance</h2>
           <p>
-            We follow ISO 27001-aligned policies, conduct annual third-party penetration tests, and implement fine-grained access controls across infrastructure. When required, we support HIPAA, GDPR, and SOC 2 reporting through shared responsibility matrices.
+            We follow ISO 27001-aligned policies, conduct annual third-party penetration tests, and implement fine-grained access controls across infrastructure. When required, we support HIPAA, GDPR, and SOC 2 reporting through shared responsibility matrices and data processing agreements.
           </p>
+          <ul className="list-inside list-disc space-y-2 text-slate-400">
+            <li>
+              <span className="text-slate-200">Encryption keys</span> are rotated regularly and stored within hardware-backed modules in the customer&apos;s selected region.
+            </li>
+            <li>
+              <span className="text-slate-200">Audit logging</span> provides administrators insight into sign-ins, dataset transfers, and privileged operations across the console.
+            </li>
+            <li>
+              <span className="text-slate-200">Resilience planning</span> includes disaster recovery playbooks, business continuity tests, and incident reporting workflows aligned with regulatory timelines.
+            </li>
+          </ul>
           <p>
             Clients receive detailed audit logs, regional data residency options, and configurable retention schedules to align with internal policies.
           </p>
@@ -48,6 +70,17 @@ export default function PrivacyPage() {
           <p>
             You can request access, correction, or deletion of captured data at any time by contacting our support team. For joint development initiatives, we publish governance charters that codify data ownership and acceptable-use expectations.
           </p>
+          <ul className="list-inside list-disc space-y-2 text-slate-400">
+            <li>
+              <span className="text-slate-200">Self-service exports</span> let administrators download redacted copies of datasets or audit trails for independent review.
+            </li>
+            <li>
+              <span className="text-slate-200">Granular role controls</span> make it possible to define who can view, label, or share content within the VisionForge platform.
+            </li>
+            <li>
+              <span className="text-slate-200">Opt-in research programs</span> are governed by explicit consent, with participation settings available inside each organization&apos;s privacy console.
+            </li>
+          </ul>
           <p id="support">
             Questions about privacy, ethics, or compliance can be directed to <a className="text-sky-300 underline underline-offset-4" href="mailto:privacy@visionforge.ai">privacy@visionforge.ai</a>.
           </p>
