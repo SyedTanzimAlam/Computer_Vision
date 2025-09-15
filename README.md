@@ -1,5 +1,6 @@
 # VisionForge Console
 
+
 A sign-in experience for the fictional VisionForge computer vision platform, inspired by the [Shadcn Admin login](https://github.com/satnaing/shadcn-admin). The page runs on [Next.js](https://nextjs.org/) with the App Router, styles come from [Tailwind CSS](https://tailwindcss.com/), and the project is powered by the [Bun](https://bun.sh/) runtime.
 
 ## Features
@@ -13,23 +14,28 @@ A sign-in experience for the fictional VisionForge computer vision platform, ins
 - **Framework:** Next.js 15 with the App Router and Turbopack dev server
 - **Runtime & package manager:** Bun 1.2+
 - **Styling:** Tailwind CSS v4 (utility classes and inline themes)
-- **TypeScript:** Strict mode with modern JSX runtime
+- **TypeScript:** Strictode with modern JSX runtime
 
 ## Getting started
 
 Install dependencies if you have not already:
 
+
 ```bash
 bun install
 ```
 
+
 Run the development server with Turbopack:
+
 
 ```bash
 bun run dev
 ```
 
+
 Then open [http://localhost:3000](http://localhost:3000) in your browser. Edits to files inside `app/` automatically hot reload the page.
+
 
 ## Available scripts
 
@@ -44,11 +50,13 @@ bun run lint    # Run ESLint using the Next.js config
 
 ```
 app/
+
   globals.css     # Tailwind CSS imports and design tokens
   layout.tsx      # Root layout, metadata, and font setup
   page.tsx        # Shadcn Admin–inspired login page with validation logic
   privacy/        # Static privacy policy route
 public/           # Static assets such as the favicon
+
 ```
 
 ## Deployment
