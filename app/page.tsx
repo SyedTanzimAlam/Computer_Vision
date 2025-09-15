@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -297,5 +298,6 @@ function FacebookIcon(props: SVGProps<SVGSVGElement>) {
         d="M13.5 21.5v-7h2.4l.36-2.75h-2.76V9.25c0-.8.22-1.34 1.38-1.34h1.48V5.45A20 20 0 0 0 14.4 5c-2.1 0-3.55 1.27-3.55 3.6v2.01H8.5v2.75h2.35v7Z"
       />
     </svg>
+
   );
 }

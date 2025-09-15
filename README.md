@@ -1,5 +1,6 @@
 # VisionForge Console
 
+
 A Next.js + Tailwind recreation of the Shadcn Admin create-account experience tailored for the fictional VisionForge computer vision platform. The project runs on the Bun runtime and mirrors the UI patterns from [satnaing/shadcn-admin](https://github.com/satnaing/shadcn-admin).
 
 ## Features
@@ -19,17 +20,22 @@ A Next.js + Tailwind recreation of the Shadcn Admin create-account experience ta
 
 Install dependencies:
 
+
 ```bash
 bun install
 ```
 
+
 Run the development server:
+
 
 ```bash
 bun run dev
 ```
 
+
 Then open [http://localhost:3000](http://localhost:3000) in your browser. Edits to files inside `app/` hot reload automatically.
+
 
 ## Available scripts
 
@@ -44,11 +50,13 @@ bun run lint    # Run ESLint using the Next.js config
 
 ```
 app/
+
   globals.css     # Tailwind CSS imports and global design tokens
   layout.tsx      # Root layout, metadata, and font setup
   page.tsx        # VisionForge create-account page with validation logic
   privacy/        # Static privacy policy route
 public/           # Static assets such as the favicon
+
 ```
 
 ## Deployment
@@ -59,4 +67,6 @@ Build the site before deploying to your hosting provider of choice:
 bun run build
 ```
 
+
 The generated output in `.next/` can be served with `bun run start` or deployed to platforms like Vercel or Netlify.
+

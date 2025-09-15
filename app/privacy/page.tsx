@@ -9,6 +9,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
+
     <main className="mx-auto max-w-4xl px-6 py-24 text-slate-900">
       <article className="space-y-12 rounded-3xl border border-slate-200 bg-white p-10 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.35)]">
         <header className="space-y-4">
@@ -65,6 +66,7 @@ export default function PrivacyPage() {
           </Link>
         </footer>
       </article>
+
     </main>
   );
 }
