@@ -49,6 +49,10 @@ bun run lint    # Run ESLint using the Next.js config
 ## Project structure
 
 ```
+config/
+  eslint.config.mjs   # ESLint flat config re-exported at the repo root
+  next.config.ts      # Next.js app configuration (re-exported by root file)
+  postcss.config.mjs  # PostCSS plugins shared across the app
 app/
 
   globals.css     # Tailwind CSS imports and global design tokens
