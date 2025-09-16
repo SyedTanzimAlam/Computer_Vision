@@ -3,6 +3,7 @@
 import * as React from "react";
 import * as ToastPrimitives from "@radix-ui/react-toast";
 
+import { colors, radii, shadows, spacing } from "@/config/ui";
 import { cn } from "@/lib/utils";
 
 const ToastProvider = ToastPrimitives.Provider;
@@ -10,13 +11,14 @@ const ToastProvider = ToastPrimitives.Provider;
 const ToastViewport = React.forwardRef<
   React.ElementRef<typeof ToastPrimitives.Viewport>,
   React.ComponentPropsWithoutRef<typeof ToastPrimitives.Viewport>
->(({ className, ...props }, ref) => (
+>(({ className, style, ...props }, ref) => (
   <ToastPrimitives.Viewport
     ref={ref}
     className={cn(
-      "pointer-events-none fixed inset-x-4 top-6 z-[100] flex max-h-screen flex-col gap-3 sm:inset-x-auto sm:right-6 sm:w-[360px]",
+      "pointer-events-none fixed inset-x-4 top-6 z-[100] flex max-h-screen flex-col gap-[var(--toast-gap)] sm:inset-x-auto sm:right-6 sm:w-[360px]",
       className,
     )}
+    style={{ "--toast-gap": spacing.sm, ...style }}
     {...props}
   />
 ));
@@ -24,11 +26,33 @@ ToastViewport.displayName = ToastPrimitives.Viewport.displayName;
 
 type ToastVariant = "default" | "success" | "destructive";
 
-const variantStyles: Record<ToastVariant, string> = {
-  default: "border-slate-200 bg-white text-slate-900 shadow-[0_25px_55px_-35px_rgba(15,23,42,0.55)]",
-  success: "border-emerald-200 bg-emerald-50 text-emerald-900 shadow-[0_20px_45px_-30px_rgba(4,120,87,0.35)]",
-  destructive:
-    "border-rose-200 bg-rose-50 text-rose-900 shadow-[0_20px_45px_-30px_rgba(225,29,72,0.35)]",
+const toastBaseVars: React.CSSProperties = {
+  "--toast-radius": radii.toast,
+  "--toast-padding-x": spacing.md,
+  "--toast-padding-y": spacing.md,
+  "--toast-padding-right": spacing.xl,
+  "--toast-gap": spacing.sm,
+};
+
+const toastVariantStyles: Record<ToastVariant, React.CSSProperties> = {
+  default: {
+    backgroundColor: colors.toast.default.background,
+    color: colors.toast.default.foreground,
+    borderColor: colors.toast.default.border,
+    boxShadow: shadows.toast.default,
+  },
+  success: {
+    backgroundColor: colors.toast.success.background,
+    color: colors.toast.success.foreground,
+    borderColor: colors.toast.success.border,
+    boxShadow: shadows.toast.success,
+  },
+  destructive: {
+    backgroundColor: colors.toast.destructive.background,
+    color: colors.toast.destructive.foreground,
+    borderColor: colors.toast.destructive.border,
+    boxShadow: shadows.toast.destructive,
+  },
 };
 
 interface ToastProps extends React.ComponentPropsWithoutRef<typeof ToastPrimitives.Root> {
@@ -38,14 +62,14 @@ interface ToastProps extends React.ComponentPropsWithoutRef<typeof ToastPrimitiv
 const Toast = React.forwardRef<
   React.ElementRef<typeof ToastPrimitives.Root>,
   ToastProps
->(({ className, variant = "default", ...props }, ref) => (
+>(({ className, style, variant = "default", ...props }, ref) => (
   <ToastPrimitives.Root
     ref={ref}
     className={cn(
-      "toast-root group pointer-events-auto relative flex w-full min-w-0 max-w-[360px] items-start gap-3 overflow-hidden rounded-2xl border p-4 pr-6 text-sm transition-all",
-      variantStyles[variant],
+      "toast-root group pointer-events-auto relative flex w-full min-w-0 max-w-[360px] items-start gap-[var(--toast-gap)] overflow-hidden rounded-[var(--toast-radius)] border py-[var(--toast-padding-y)] pl-[var(--toast-padding-x)] pr-[var(--toast-padding-right)] text-sm transition-all",
       className,
     )}
+    style={{ ...toastBaseVars, ...toastVariantStyles[variant], ...style }}
     {...props}
   />
 ));
