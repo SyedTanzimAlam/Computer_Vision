@@ -1,5 +1,7 @@
 "use client";
 
+import type { CSSProperties } from "react";
+
 import {
   Toast,
   ToastClose,
@@ -10,20 +12,25 @@ import {
 } from "@/components/ui/toast";
 import type { ToastVariant } from "@/components/ui/toast";
 import { useToast } from "@/components/ui/use-toast";
+import { colors } from "@/config/ui";
 
 function ToastIndicator({ variant }: { variant?: ToastVariant }) {
   const baseClasses =
     "mt-0.5 h-2.5 w-2.5 flex-none rounded-full border border-current/40";
 
-  if (variant === "success") {
-    return <span className={`${baseClasses} bg-emerald-500/80`} aria-hidden />;
-  }
+  const indicatorStyles: Record<ToastVariant, CSSProperties> = {
+    default: { backgroundColor: colors.toast.default.indicator },
+    success: { backgroundColor: colors.toast.success.indicator },
+    destructive: { backgroundColor: colors.toast.destructive.indicator },
+  };
 
-  if (variant === "destructive") {
-    return <span className={`${baseClasses} bg-rose-500/80`} aria-hidden />;
-  }
-
-  return <span className={`${baseClasses} bg-slate-400/70`} aria-hidden />;
+  return (
+    <span
+      className={baseClasses}
+      style={indicatorStyles[variant ?? "default"]}
+      aria-hidden
+    />
+  );
 }
 
 export function Toaster() {

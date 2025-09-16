@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import type { LabelHTMLAttributes } from "react";
 
-import { COLORS } from "@/config/ui";
+import { colors } from "@/config/ui";
 import { cn } from "@/lib/utils";
 
 export type LabelProps = LabelHTMLAttributes<HTMLLabelElement>;
@@ -11,7 +11,7 @@ export const Label = forwardRef<HTMLLabelElement, LabelProps>(
     <label
       ref={ref}
       className={cn("text-sm font-medium", className)}
-      style={{ color: COLORS.label, ...style }}
+      style={{ color: colors.label, ...style }}
       {...props}
     />
   ),

@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import type { CSSProperties, HTMLAttributes } from "react";
 
-import { BORDER_RADIUS, COLORS, SPACING } from "@/config/ui";
+import { colors, radii, shadows, spacing } from "@/config/ui";
 import { cn } from "@/lib/utils";
 
 export const Card = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
@@ -10,11 +10,11 @@ export const Card = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
       ref={ref}
       className={cn("border", className)}
       style={{
-        borderRadius: BORDER_RADIUS.card,
-        borderColor: COLORS.border,
-        backgroundColor: COLORS.surface,
-        color: COLORS.surfaceForeground,
-        boxShadow: COLORS.cardShadow,
+        borderRadius: radii.card,
+        borderColor: colors.border,
+        backgroundColor: colors.surface,
+        color: colors.surfaceForeground,
+        boxShadow: shadows.card,
         ...style,
       }}
       {...props}
@@ -32,10 +32,10 @@ export const CardHeader = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivEleme
         className,
       )}
       style={{
-        "--card-header-gap": SPACING.xs,
-        "--card-section-padding-x": SPACING.xl,
-        "--card-header-padding-top": SPACING.xl,
-        "--card-header-padding-bottom": SPACING.none,
+        "--card-header-gap": spacing.xs,
+        "--card-section-padding-x": spacing.xl,
+        "--card-header-padding-top": spacing.xl,
+        "--card-header-padding-bottom": spacing.none,
         ...style,
       } as CSSProperties}
       {...props}
@@ -56,7 +56,7 @@ export const CardDescription = forwardRef<HTMLParagraphElement, HTMLAttributes<H
     <p
       ref={ref}
       className={cn("text-sm", className)}
-      style={{ color: COLORS.mutedForeground, ...style }}
+        style={{ color: colors.mutedForeground, ...style }}
       {...props}
     />
   ),
@@ -72,9 +72,9 @@ export const CardContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElem
         className,
       )}
       style={{
-        "--card-section-padding-x": SPACING.xl,
-        "--card-content-padding-top": SPACING.md,
-        "--card-content-padding-bottom": SPACING.xl,
+        "--card-section-padding-x": spacing.xl,
+        "--card-content-padding-top": spacing.md,
+        "--card-content-padding-bottom": spacing.xl,
         ...style,
       } as CSSProperties}
       {...props}
@@ -92,9 +92,9 @@ export const CardFooter = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivEleme
         className,
       )}
       style={{
-        "--card-section-padding-x": SPACING.xl,
-        "--card-footer-padding-top": SPACING.none,
-        "--card-footer-padding-bottom": SPACING.xl,
+        "--card-section-padding-x": spacing.xl,
+        "--card-footer-padding-top": spacing.none,
+        "--card-footer-padding-bottom": spacing.xl,
         ...style,
       } as CSSProperties}
       {...props}

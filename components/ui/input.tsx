@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import type { CSSProperties, InputHTMLAttributes } from "react";
 
-import { BORDER_RADIUS, COLORS, SPACING } from "@/config/ui";
+import { colors, radii, sizes, spacing } from "@/config/ui";
 import { cn } from "@/lib/utils";
 
 export type InputProps = InputHTMLAttributes<HTMLInputElement>;
@@ -9,16 +9,16 @@ export type InputProps = InputHTMLAttributes<HTMLInputElement>;
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ className, type = "text", style, ...props }, ref) => {
     const inputVars: CSSProperties = {
-      "--input-radius": BORDER_RADIUS.md,
-      "--input-border": COLORS.border,
-      "--input-background": COLORS.inputBackground,
-      "--input-foreground": COLORS.inputForeground,
-      "--input-placeholder": COLORS.placeholder,
-      "--input-ring": COLORS.focusRingSubtle,
-      "--input-ring-offset": COLORS.focusRingOffset,
-      "--input-height": SPACING.buttonHeightDefault,
-      "--input-padding-x": SPACING.sm,
-      "--input-padding-y": SPACING.xs,
+      "--input-radius": radii.md,
+      "--input-border": colors.border,
+      "--input-background": colors.input.background,
+      "--input-foreground": colors.input.foreground,
+      "--input-placeholder": colors.input.placeholder,
+      "--input-ring": colors.focusRing.subtle,
+      "--input-ring-offset": colors.focusRing.offset,
+      "--input-height": sizes.button.md,
+      "--input-padding-x": spacing.sm,
+      "--input-padding-y": spacing.xs,
     };
 
     return (

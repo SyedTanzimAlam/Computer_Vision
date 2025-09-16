@@ -51,6 +51,26 @@
   --size-button-md: 2.5rem;
   --size-button-lg: 2.75rem;
 
+  --toast-radius: 1rem;
+
+  --toast-default-background: var(--surface);
+  --toast-default-foreground: var(--foreground);
+  --toast-default-border: var(--border);
+  --toast-default-shadow: 0 25px 55px -35px rgb(15 23 42 / 0.55);
+  --toast-indicator-default: rgba(148, 163, 184, 0.7);
+
+  --toast-success-background: #ecfdf5;
+  --toast-success-foreground: #064e3b;
+  --toast-success-border: #a7f3d0;
+  --toast-success-shadow: 0 20px 45px -30px rgb(4 120 87 / 0.35);
+  --toast-indicator-success: rgba(16, 185, 129, 0.8);
+
+  --toast-destructive-background: #fff1f2;
+  --toast-destructive-foreground: #881337;
+  --toast-destructive-border: #fecdd3;
+  --toast-destructive-shadow: 0 20px 45px -30px rgb(225 29 72 / 0.35);
+  --toast-indicator-destructive: rgba(244, 63, 94, 0.8);
+
 }
 
 @theme inline {
