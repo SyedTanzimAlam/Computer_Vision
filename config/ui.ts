@@ -1,0 +1,46 @@
+export const COLORS = {
+  background: "var(--background)",
+  foreground: "var(--foreground)",
+  surface: "var(--surface)",
+  surfaceForeground: "var(--surface-foreground)",
+  muted: "var(--muted)",
+  mutedForeground: "var(--muted-foreground)",
+  border: "var(--border)",
+  borderStrong: "var(--border-strong)",
+  label: "var(--label-foreground)",
+  placeholder: "var(--placeholder)",
+  separator: "var(--separator)",
+  buttonBackground: "var(--button-background)",
+  buttonBackgroundHover: "var(--button-background-hover)",
+  buttonForeground: "var(--button-foreground)",
+  buttonOutlineForeground: "var(--button-outline-foreground)",
+  buttonOutlineForegroundHover: "var(--button-outline-foreground-hover)",
+  buttonOutlineBorder: "var(--button-outline-border)",
+  buttonOutlineBorderHover: "var(--button-outline-border-hover)",
+  buttonGhostForeground: "var(--button-ghost-foreground)",
+  buttonGhostForegroundHover: "var(--button-ghost-foreground-hover)",
+  buttonGhostBackgroundHover: "var(--button-ghost-background-hover)",
+  inputBackground: "var(--input-background)",
+  inputForeground: "var(--input-foreground)",
+  focusRingStrong: "var(--focus-ring-strong)",
+  focusRingSubtle: "var(--focus-ring-subtle)",
+  focusRingOffset: "var(--focus-ring-offset)",
+  cardShadow: "var(--shadow-card)",
+} as const;
+
+export const BORDER_RADIUS = {
+  md: "var(--radius-md)",
+  card: "var(--radius-card)",
+} as const;
+
+export const SPACING = {
+  none: "var(--space-none)",
+  xs: "var(--space-xs)",
+  sm: "var(--space-sm)",
+  md: "var(--space-md)",
+  lg: "var(--space-lg)",
+  xl: "var(--space-xl)",
+  buttonHeightSm: "var(--size-button-sm)",
+  buttonHeightDefault: "var(--size-button-md)",
+  buttonHeightLg: "var(--size-button-lg)",
+} as const;

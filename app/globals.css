@@ -5,11 +5,79 @@
   --background: #f8fafc;
   --foreground: #0f172a;
 
+  --surface: #ffffff;
+  --surface-foreground: oklch(12.9% 0.042 264.695);
+  --muted: oklch(44.6% 0.043 257.281);
+  --muted-foreground: oklch(55.4% 0.046 257.417);
+  --border: oklch(92.9% 0.013 255.508);
+  --border-strong: oklch(86.9% 0.022 252.894);
+  --label-foreground: oklch(37.2% 0.044 257.287);
+  --placeholder: oklch(70.4% 0.04 256.788);
+
+  --button-background: oklch(20.8% 0.042 265.755);
+  --button-background-hover: oklch(27.9% 0.041 260.031);
+  --button-foreground: #ffffff;
+  --button-outline-foreground: oklch(37.2% 0.044 257.287);
+  --button-outline-foreground-hover: oklch(20.8% 0.042 265.755);
+  --button-outline-border: oklch(92.9% 0.013 255.508);
+  --button-outline-border-hover: oklch(86.9% 0.022 252.894);
+  --button-ghost-foreground: oklch(44.6% 0.043 257.281);
+  --button-ghost-foreground-hover: oklch(20.8% 0.042 265.755);
+  --button-ghost-background-hover: oklch(96.8% 0.007 247.896);
+
+  --input-background: #ffffff;
+  --input-foreground: oklch(20.8% 0.042 265.755);
+  --input-placeholder: oklch(70.4% 0.04 256.788);
+
+  --separator: oklch(92.9% 0.013 255.508);
+
+  --focus-ring-strong: rgb(15 23 42 / 0.2);
+  --focus-ring-subtle: rgb(15 23 42 / 0.1);
+  --focus-ring-offset: #ffffff;
+
+  --shadow-card: 0 20px 50px -35px rgb(15 23 42 / 0.45);
+
+  --radius-md: 0.5rem;
+  --radius-card: 24px;
+
+  --space-none: 0px;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.25rem;
+  --space-xl: 1.5rem;
+
+  --size-button-sm: 2.25rem;
+  --size-button-md: 2.5rem;
+  --size-button-lg: 2.75rem;
+
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-foreground: var(--surface-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-label: var(--label-foreground);
+  --color-placeholder: var(--placeholder);
+  --color-button: var(--button-background);
+  --color-button-hover: var(--button-background-hover);
+  --color-button-foreground: var(--button-foreground);
+  --color-separator: var(--separator);
+  --color-focus-ring-strong: var(--focus-ring-strong);
+  --color-focus-ring-subtle: var(--focus-ring-subtle);
+  --radius-md: var(--radius-md);
+  --radius-card: var(--radius-card);
+  --spacing-none: var(--space-none);
+  --spacing-xs: var(--space-xs);
+  --spacing-sm: var(--space-sm);
+  --spacing-md: var(--space-md);
+  --spacing-lg: var(--space-lg);
+  --spacing-xl: var(--space-xl);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
