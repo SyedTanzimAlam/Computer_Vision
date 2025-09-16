@@ -9,9 +9,10 @@
     "lint": "eslint --config config/eslint.config.mjs"
   },
   "dependencies": {
+    "@radix-ui/react-toast": "^1.2.15",
+    "next": "15.5.3",
     "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "next": "15.5.3"
+    "react-dom": "19.1.0"
   },
   "devDependencies": {
     "typescript": "^5",
