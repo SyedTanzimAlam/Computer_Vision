@@ -23,3 +23,19 @@ export async function signIn(email: string, password: string): Promise<void> {
     }, 300);
   });
 }
+
+export async function signUp(email: string, password: string): Promise<void> {
+  const trimmedEmail = email?.trim() ?? "";
+  const trimmedPassword = password?.trim() ?? "";
+
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (trimmedEmail && trimmedPassword) {
+        resolve();
+        return;
+      }
+
+      reject(new Error("Unable to create account"));
+    }, 300);
+  });
+}
