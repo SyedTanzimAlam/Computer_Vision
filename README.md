@@ -63,6 +63,10 @@ public/           # Static assets such as the favicon
 
 ```
 
+## Documentation
+
+- [Design language](docs/design.md) — summarizes the typography scale, color palette, component patterns, and spacing rules that drive the interface.
+
 ## Deployment
 
 Build the site before deploying to your hosting provider of choice:
