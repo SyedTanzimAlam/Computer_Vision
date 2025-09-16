@@ -1,6 +1,6 @@
 # Design tokens
 
-The UI token module (`config/ui.ts`) mirrors the CSS custom properties declared in `app/globals.css`. Import these constants instead of hard-coding values so components stay aligned with the global theme.
+The UI token module ([`config/ui.ts`](../config/ui.ts)) mirrors the CSS custom properties declared in [`app/globals.css`](../app/globals.css). Import these constants instead of hard-coding values so components stay aligned with the global theme.
 
 ## Colors
 
@@ -20,6 +20,8 @@ The UI token module (`config/ui.ts`) mirrors the CSS custom properties declared 
 | `colors.placeholder` | `--placeholder` | Low-contrast placeholder text. |
 | `colors.separator` | `--separator` | Divider color. |
 
+These tokens are defined in [`config/ui.ts`](../config/ui.ts) and backed by [`app/globals.css`](../app/globals.css).
+
 ### Button colors
 
 | Token | CSS variable | Description |
@@ -35,6 +37,8 @@ The UI token module (`config/ui.ts`) mirrors the CSS custom properties declared 
 | `colors.button.ghostForegroundHover` | `--button-ghost-foreground-hover` | Ghost button hover text color. |
 | `colors.button.ghostBackgroundHover` | `--button-ghost-background-hover` | Ghost button hover background. |
 
+These tokens are defined in [`config/ui.ts`](../config/ui.ts) and backed by [`app/globals.css`](../app/globals.css).
+
 ### Input colors
 
 | Token | CSS variable | Description |
@@ -43,6 +47,8 @@ The UI token module (`config/ui.ts`) mirrors the CSS custom properties declared 
 | `colors.input.foreground` | `--input-foreground` | Input text color. |
 | `colors.input.placeholder` | `--input-placeholder` | Input placeholder color. |
 
+These tokens are defined in [`config/ui.ts`](../config/ui.ts) and backed by [`app/globals.css`](../app/globals.css).
+
 ### Focus ring
 
 | Token | CSS variable | Description |
@@ -50,6 +56,8 @@ The UI token module (`config/ui.ts`) mirrors the CSS custom properties declared 
 | `colors.focusRing.strong` | `--focus-ring-strong` | Prominent focus ring color. |
 | `colors.focusRing.subtle` | `--focus-ring-subtle` | Subtle focus outline. |
 | `colors.focusRing.offset` | `--focus-ring-offset` | Background offset color behind focus rings. |
+
+These tokens are defined in [`config/ui.ts`](../config/ui.ts) and backed by [`app/globals.css`](../app/globals.css).
 
 ### Toast colors
 
@@ -68,6 +76,8 @@ The UI token module (`config/ui.ts`) mirrors the CSS custom properties declared 
 | `colors.toast.destructive.border` | `--toast-destructive-border` | Destructive toast border. |
 | `colors.toast.destructive.indicator` | `--toast-indicator-destructive` | Destructive indicator dot. |
 
+These tokens are defined in [`config/ui.ts`](../config/ui.ts) and backed by [`app/globals.css`](../app/globals.css).
+
 ## Radii
 
 | Token | CSS variable | Description |
@@ -75,6 +85,8 @@ The UI token module (`config/ui.ts`) mirrors the CSS custom properties declared 
 | `radii.md` | `--radius-md` | Standard control rounding. |
 | `radii.card` | `--radius-card` | Large rounding for cards and surfaces. |
 | `radii.toast` | `--toast-radius` | Toast container rounding. |
+
+These tokens are defined in [`config/ui.ts`](../config/ui.ts) and backed by [`app/globals.css`](../app/globals.css).
 
 ## Spacing
 
@@ -87,6 +99,8 @@ The UI token module (`config/ui.ts`) mirrors the CSS custom properties declared 
 | `spacing.lg` | `--space-lg` | Large spacing token. |
 | `spacing.xl` | `--space-xl` | Extra-large spacing token. |
 
+These tokens are defined in [`config/ui.ts`](../config/ui.ts) and backed by [`app/globals.css`](../app/globals.css).
+
 ## Sizes
 
 | Token | CSS variable | Description |
@@ -94,6 +108,8 @@ The UI token module (`config/ui.ts`) mirrors the CSS custom properties declared 
 | `sizes.button.sm` | `--size-button-sm` | Small button height. |
 | `sizes.button.md` | `--size-button-md` | Default button height. |
 | `sizes.button.lg` | `--size-button-lg` | Large button height. |
+
+These tokens are defined in [`config/ui.ts`](../config/ui.ts) and backed by [`app/globals.css`](../app/globals.css).
 
 ## Shadows
 
@@ -103,3 +119,5 @@ The UI token module (`config/ui.ts`) mirrors the CSS custom properties declared 
 | `shadows.toast.default` | `--toast-default-shadow` | Default toast shadow. |
 | `shadows.toast.success` | `--toast-success-shadow` | Success toast shadow. |
 | `shadows.toast.destructive` | `--toast-destructive-shadow` | Destructive toast shadow. |
+
+These tokens are defined in [`config/ui.ts`](../config/ui.ts) and backed by [`app/globals.css`](../app/globals.css).
