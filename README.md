@@ -48,6 +48,8 @@ bun run lint    # Run ESLint using the Next.js config
 
 ## Project structure
 
+For the full set of design token definitions used across the project, refer to [Design tokens](docs/design.md).
+
 ```
 config/
   eslint.config.mjs   # ESLint flat config re-exported at the repo root
