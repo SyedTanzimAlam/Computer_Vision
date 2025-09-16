@@ -1,6 +1,8 @@
 import { forwardRef } from "react";
 import type { ButtonHTMLAttributes } from "react";
 
+import { cn } from "@/lib/utils";
+
 type ButtonVariant = "default" | "outline" | "ghost";
 type ButtonSize = "default" | "sm" | "lg" | "icon";
 
@@ -24,10 +26,6 @@ const sizeStyles: Record<ButtonSize, string> = {
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   size?: ButtonSize;
-}
-
-function cn(...classes: Array<string | undefined | null | false>) {
-  return classes.filter(Boolean).join(" ");
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
