@@ -8,6 +8,8 @@ This document tracks every user-facing screen in the VisionForge Console demo. U
   - **Purpose:** Landing experience for new users. Presents the create account form with client-side validation, social sign-up placeholders, and links to privacy terms.
 - `/sign-in` (`app/sign-in/page.tsx`)
   - **Purpose:** Email/password sign-in flow that validates input, exposes demo credentials, and redirects to the dashboard on successful mock authentication.
+- `/sign-up` (`app/sign-up/page.tsx`)
+  - **Purpose:** Account creation form collecting email, password, and confirmation with social sign-up shortcuts and policy disclaimers.
 - `/dashboard` (`app/dashboard/page.tsx`)
   - **Purpose:** Placeholder dashboard card shown after sign-in, confirming navigation to the authenticated area of the app.
 - `/privacy` (`app/privacy/page.tsx` → `src/screens/Privacy/PrivacyScreen.tsx`)
