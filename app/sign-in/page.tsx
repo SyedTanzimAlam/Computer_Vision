@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type ChangeEvent, type FormEvent, type SVGProps } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
@@ -16,6 +17,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { signIn, TEST_CREDENTIALS } from "@/lib/mock-auth";
+
+const SOCIAL_OPTIONS_ID = "sign-in-social-options";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -102,7 +105,12 @@ export default function SignInPage() {
           </CardHeader>
 
           <CardContent className="grid gap-4">
-            <div className="grid grid-cols-2 gap-4">
+            <div
+              id={SOCIAL_OPTIONS_ID}
+              className="grid grid-cols-2 gap-4"
+              role="group"
+              aria-label="Continue with a social provider"
+            >
               <Button variant="outline" className="w-full" type="button">
                 <GithubIcon className="mr-2 h-4 w-4" aria-hidden="true" />
                 GitHub
@@ -128,6 +136,7 @@ export default function SignInPage() {
                 value={email}
                 onChange={handleEmailChange}
                 placeholder="m@example.com"
+                autoComplete="email"
                 aria-invalid={errors.email ? true : undefined}
                 aria-describedby={emailErrorId}
               />
@@ -145,6 +154,7 @@ export default function SignInPage() {
                 type="password"
                 value={password}
                 onChange={handlePasswordChange}
+                autoComplete="current-password"
                 aria-invalid={errors.password ? true : undefined}
                 aria-describedby={passwordErrorId}
               />
@@ -162,9 +172,16 @@ export default function SignInPage() {
                 {errors.form}
               </p>
             ) : null}
-            <Button className="w-full" type="submit" disabled={isSubmitting}>
+            <Button className="w-full" type="submit" disabled={isSubmitting} aria-controls={SOCIAL_OPTIONS_ID}>
               {isSubmitting ? "Signing in..." : "Sign in"}
             </Button>
+            <p className="text-sm text-slate-600">
+              New to VisionForge?{" "}
+              <Link href="/sign-up" className="font-medium underline">
+                Create an account
+              </Link>
+              .
+            </p>
           </CardFooter>
         </Card>
       </form>
