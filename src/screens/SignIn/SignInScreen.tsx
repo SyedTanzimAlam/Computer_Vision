@@ -1,3 +1,8 @@
+"use client";
+
+import { FormEvent, useId, useState } from "react";
+import type { ChangeEvent, SVGProps } from "react";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -10,29 +15,91 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import type { SVGProps } from "react";
+import { toast } from "@/components/ui/use-toast";
+
+const SOCIAL_PROVIDERS = [
+  { label: "GitHub", icon: GithubIcon },
+  { label: "Google", icon: GoogleIcon },
+];
 
 export default function SignInScreen() {
+  const emailId = useId();
+  const passwordId = useId();
+  const [email, setEmail] = useState("demo@visionforge.ai");
+  const [password, setPassword] = useState("demo1234");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const trimmedEmail = email.trim();
+      setEmail(trimmedEmail);
+
+      const result = await signIn({ email: trimmedEmail, password });
+
+      if (result.success) {
+        setEmail(result.email ?? trimmedEmail);
+        setPassword("");
+
+        toast({
+          title: "Signed in",
+          description: "Redirecting to your dashboard…",
+          variant: "success",
+        });
+      } else {
+        toast({
+          title: "Invalid credentials",
+          description: result.error ?? "Double-check your email and password.",
+          variant: "destructive",
+        });
+      }
+    } catch {
+      toast({
+        title: "Unable to sign in",
+        description: "Something went wrong. Please try again shortly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleSocialClick = (provider: string) => {
+    toast({
+      title: `${provider} sign-in coming soon`,
+      description: "We’re finishing the integration. Please use email for now.",
+    });
+  };
+
+  const updateField = (setter: (value: string) => void) =>
+    (event: ChangeEvent<HTMLInputElement>) => setter(event.target.value);
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-slate-100 p-4">
-      <Card className="w-[350px]">
+      <Card className="w-[360px]">
         <CardHeader>
-          <CardTitle>Create an account</CardTitle>
+          <CardTitle>Welcome back</CardTitle>
           <CardDescription>
-            Enter your email below to create your account
+            Enter your credentials to access the VisionForge Console.
           </CardDescription>
         </CardHeader>
 
         <CardContent className="grid gap-4">
-          <div className="grid grid-cols-2 gap-4">
-            <Button variant="outline" className="w-full">
-              <GithubIcon className="mr-2 h-4 w-4" aria-hidden="true" />
-              GitHub
-            </Button>
-            <Button variant="outline" className="w-full">
-              <GoogleIcon className="mr-2 h-4 w-4" aria-hidden="true" />
-              Google
-            </Button>
+          <div className="grid grid-cols-2 gap-3">
+            {SOCIAL_PROVIDERS.map((provider) => (
+              <Button
+                key={provider.label}
+                variant="outline"
+                className="w-full"
+                type="button"
+                onClick={() => handleSocialClick(provider.label)}
+              >
+                <provider.icon className="mr-2 h-4 w-4" aria-hidden="true" />
+                {provider.label}
+              </Button>
+            ))}
           </div>
 
           <div className="relative">
@@ -42,23 +109,83 @@ export default function SignInScreen() {
             </span>
           </div>
 
-          <div className="grid gap-2">
-            <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" placeholder="m@example.com" />
-          </div>
+          <form className="grid gap-4" onSubmit={handleSubmit} noValidate>
+            <div className="grid gap-2">
+              <Label htmlFor={emailId}>Email</Label>
+              <Input
+                id={emailId}
+                type="email"
+                autoComplete="email"
+                inputMode="email"
+                placeholder="m@example.com"
+                value={email}
+                onChange={updateField(setEmail)}
+                disabled={isSubmitting}
+                required
+              />
+            </div>
 
-          <div className="grid gap-2">
-            <Label htmlFor="password">Password</Label>
-            <Input id="password" type="password" />
-          </div>
+            <div className="grid gap-2">
+              <Label htmlFor={passwordId}>Password</Label>
+              <Input
+                id={passwordId}
+                type="password"
+                autoComplete="current-password"
+                placeholder="••••••••"
+                value={password}
+                onChange={updateField(setPassword)}
+                disabled={isSubmitting}
+                required
+              />
+            </div>
+
+            <Button type="submit" className="w-full" disabled={isSubmitting}>
+              {isSubmitting ? "Signing in…" : "Sign in"}
+            </Button>
+          </form>
         </CardContent>
 
         <CardFooter>
-          <Button className="w-full">Create account</Button>
+          <p className="w-full text-center text-xs text-slate-500">
+            Use <span className="font-semibold text-slate-700">demo@visionforge.ai</span> with
+            <span className="font-semibold text-slate-700"> demo1234</span> to explore the experience.
+          </p>
         </CardFooter>
       </Card>
     </div>
   );
+}
+
+type SignInResult =
+  | { success: true; email?: string }
+  | { success: false; error?: string };
+
+async function signIn({
+  email,
+  password,
+}: {
+  email: string;
+  password: string;
+}): Promise<SignInResult> {
+  await new Promise((resolve) => setTimeout(resolve, 900));
+
+  const normalizedEmail = email.trim().toLowerCase();
+
+  if (!normalizedEmail || !password) {
+    return {
+      success: false,
+      error: "Enter both your email and password to continue.",
+    };
+  }
+
+  if (normalizedEmail === "demo@visionforge.ai" && password === "demo1234") {
+    return { success: true, email: normalizedEmail };
+  }
+
+  return {
+    success: false,
+    error: "Invalid credentials. Try demo@visionforge.ai with password demo1234.",
+  };
 }
 
 function GithubIcon(props: SVGProps<SVGSVGElement>) {
@@ -97,4 +224,3 @@ function GoogleIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
-
