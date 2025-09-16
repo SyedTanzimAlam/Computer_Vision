@@ -2,6 +2,7 @@
 
 VisionForge's interface is built on a small set of theme tokens defined in `app/globals.css` and mirrored in TypeScript via `config/ui.ts`. The sections below summarize the typography, palette, component conventions, and spacing system that keep the experience cohesive while providing a quick reference for the underlying tokens.
 
+
 ## Typography
 
 - **Font families.** Geist Sans provides the primary voice for UI copy, with Geist Mono available for system feedback via CSS variables registered in the root layout.
@@ -52,7 +53,9 @@ The palette balances soft neutrals with a deep slate accent. Tokens cascade from
 | `colors.placeholder` | `--placeholder` | Low-contrast placeholder text. |
 | `colors.separator` | `--separator` | Divider color. |
 
+
 #### Button colors
+
 
 | Token | CSS variable | Description |
 | --- | --- | --- |
@@ -67,7 +70,9 @@ The palette balances soft neutrals with a deep slate accent. Tokens cascade from
 | `colors.button.ghostForegroundHover` | `--button-ghost-foreground-hover` | Ghost button hover text color. |
 | `colors.button.ghostBackgroundHover` | `--button-ghost-background-hover` | Ghost button hover background. |
 
+
 #### Input colors
+
 
 | Token | CSS variable | Description |
 | --- | --- | --- |
@@ -75,7 +80,9 @@ The palette balances soft neutrals with a deep slate accent. Tokens cascade from
 | `colors.input.foreground` | `--input-foreground` | Input text color. |
 | `colors.input.placeholder` | `--input-placeholder` | Input placeholder color. |
 
+
 #### Focus ring
+
 
 | Token | CSS variable | Description |
 | --- | --- | --- |
@@ -83,7 +90,9 @@ The palette balances soft neutrals with a deep slate accent. Tokens cascade from
 | `colors.focusRing.subtle` | `--focus-ring-subtle` | Subtle focus outline. |
 | `colors.focusRing.offset` | `--focus-ring-offset` | Background offset color behind focus rings. |
 
+
 #### Toast colors
+
 
 | Token | CSS variable | Description |
 | --- | --- | --- |
@@ -99,6 +108,7 @@ The palette balances soft neutrals with a deep slate accent. Tokens cascade from
 | `colors.toast.destructive.foreground` | `--toast-destructive-foreground` | Destructive toast text color. |
 | `colors.toast.destructive.border` | `--toast-destructive-border` | Destructive toast border. |
 | `colors.toast.destructive.indicator` | `--toast-indicator-destructive` | Destructive indicator dot. |
+
 
 ## Components
 
@@ -134,13 +144,16 @@ Tokens power a set of layout and interaction patterns that keep every surface al
 
 #### Radii
 
+
 | Token | CSS variable | Description |
 | --- | --- | --- |
 | `radii.md` | `--radius-md` | Standard control rounding. |
 | `radii.card` | `--radius-card` | Large rounding for cards and surfaces. |
 | `radii.toast` | `--toast-radius` | Toast container rounding. |
 
+
 #### Sizes
+
 
 | Token | CSS variable | Description |
 | --- | --- | --- |
@@ -148,7 +161,11 @@ Tokens power a set of layout and interaction patterns that keep every surface al
 | `sizes.button.md` | `--size-button-md` | Default button height. |
 | `sizes.button.lg` | `--size-button-lg` | Large button height. |
 
+
 #### Shadows
+=======
+These tokens are defined in [`config/ui.ts`](../config/ui.ts) and backed by [`app/globals.css`](../app/globals.css).
+
 
 | Token | CSS variable | Description |
 | --- | --- | --- |
@@ -156,6 +173,7 @@ Tokens power a set of layout and interaction patterns that keep every surface al
 | `shadows.toast.default` | `--toast-default-shadow` | Default toast shadow. |
 | `shadows.toast.success` | `--toast-success-shadow` | Success toast shadow. |
 | `shadows.toast.destructive` | `--toast-destructive-shadow` | Destructive toast shadow. |
+
 
 ## Spacing
 
@@ -173,3 +191,4 @@ Tokens power a set of layout and interaction patterns that keep every surface al
 | `spacing.md` | `--space-md` | Medium spacing token. |
 | `spacing.lg` | `--space-lg` | Large spacing token. |
 | `spacing.xl` | `--space-xl` | Extra-large spacing token. |
+
